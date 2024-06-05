@@ -3,7 +3,8 @@
 ## Description
 The language I chose was elven
 
-This is just a toy example of a language but the rules it follows are similar to those used for… problem where … 
+The words inlcuded in my lexical analysis are the following:
+Calen - Sindarin word for 'green', Calma - Quenya word for 'Lamp', Carca - Quenya word for 'fang' , Celeb- Quenya word for 'silver', Certar - Quenya word for 'Runes', referring in particular to the "Alphabet of Daeron". 
 
 The **modeling technique** I decided to use was a Non-deterministic Finite Automata  (NFA) to represent my solutions since they are easier to model and are often used in the literature to model lexeme parsers as mentioned in (Dom et al 2033). 
 
