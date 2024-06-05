@@ -10,35 +10,15 @@ The **modeling technique** I decided to use was a Non-deterministic Finite Autom
 
 ## Model of the Solution
 
-These are the three  automata I generated for this language:
+I modeled my automaton to cover the 5 words from the elvish language provided
 
-The first automaton  is used to represent all the numbers that start from 1
-
-
-![NFA1](automata.png)
+![NFA1](Automaton.jpeg)
  
-The second automaton is used to represent all the numbers that start from 2 and 3 
 
-![NFA2](automata.png)
-
-The third automaton is used when …. Etc… 
-
-I decided to use three different automata because it is easier to do this way, however using NFA I have to transform them to DFA to be able to program the latter or to migrate them to a RE more easily rather than try to guess them. To do that, I followed the method proposed by (Sun et al 2054).  
-
-The resulting automaton was:
-
-![NFA3](automata.png)
-
-The presented automata are equivalent to the following regular expressions:
+The presented automaton is equivalent to the following regular expression:
 
 NDA 1 -> RE 1:
 {[1,2,3]*}
-
-NDA 2 -> RE 2:
-{[2,3]*}
-
-NDA 1 -> RE 1:
-{[132cc3,3]+-}
 
 ## Implementation
 
