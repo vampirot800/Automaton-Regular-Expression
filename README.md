@@ -1,7 +1,7 @@
 # Automaton-Regular-Expression
 
 ## Description
-The language I chose was 
+The language I chose was elven
 
 This is just a toy example of a language but the rules it follows are similar to those used for… problem where … 
 
