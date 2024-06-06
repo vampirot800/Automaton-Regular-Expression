@@ -6,7 +6,8 @@
 
 class Automaton:
     def __init__(self):
-        # Define states and transitions
+
+        # Definition of states and transitions
         self.states = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12'}
         self.input_symbols = {'C', 'A', 'E', 'L', 'R', 'M', 'T', 'N', 'B'}
         self.transitions = {
@@ -24,60 +25,63 @@ class Automaton:
             'q11': {'R': 'q12'}, 
             'q12': {}, 
         }
+        
         self.start_state = 'q0'
         self.current_state = 'q0'  # Initial state 'q0'
         self.final_state = 'q12'
         self.initial_symbol = 'C'  # Initial symbol to start the automaton
 
+    # Functions 
+    # Find the next state based on the current state and input symbol
+
     def move(self, input_symbol):
-        # Find the next state based on the current state and input symbol
         if input_symbol in self.transitions[self.current_state]:
             self.current_state = self.transitions[self.current_state][input_symbol]
         else:
             raise ValueError(f"No transition defined for state {self.current_state} with input {input_symbol}")
 
-    def process(self, input_sequence):
-        # Process the initial symbol 'C' first
-        self.current_state = self.start_state  # Reset to initial state
-        self.move(self.initial_symbol)  # Process the initial symbol
+    # Resets to initial state, processes the initial symbol 'C' and then the rest 
 
-        # Process the rest of the input sequence
+    def process(self, input_sequence):
+        self.current_state = self.start_state 
+        self.move(self.initial_symbol) 
+
         for symbol in input_sequence:
             self.move(symbol)
         return self.current_state
 
-# Create an instance of the Automaton
+# Automaton Instance
 automaton = Automaton()
 
-# Test the automaton with an example input sequence
+# Test Cases
+# Language Elven Words sentences
+# Expected Outputs: q12 (ending state)
+
 input_sequence = ['C','A', 'L', 'E', 'N']
 final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  # Expected Output: q12
+print(f"Final state: {final_state}")  
 
-# Test the automaton with an example input sequence
 input_sequence = ['C','A', 'L', 'M', 'A']
 final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  # Expected Output: q12
+print(f"Final state: {final_state}") 
 
-# Test the automaton with an example input sequence
 input_sequence = ['C','A', 'R', 'C', 'A']
 final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  # Expected Output: q12
+print(f"Final state: {final_state}") 
 
-# Test the automaton with an example input sequence
 input_sequence = ['C','E', 'L', 'E', 'B']
 final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  # Expected Output: q12
+print(f"Final state: {final_state}") 
 
-# Test with another input sequence
 input_sequence = ['C','E', 'R', 'T', 'A', 'R']
 final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  # Expected Output: q12
+print(f"Final state: {final_state}")  
 
-# Test with an invalid input sequence
+# Invalid Sentence Test
+# Should raise an error
 try:
     input_sequence = ['C','E','L','E','N']
     final_state = automaton.process(input_sequence)
     print(f"Final state: {final_state}")
 except ValueError as e:
-    print(e)  # Expected to raise an error for invalid input
+    print(e)  
