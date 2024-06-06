@@ -11,9 +11,12 @@ Carca: Quenya word for 'fang'
 Celeb: Quenya word for 'silver'
 Certar: Quenya word for 'Runes', referring in particular to the "Alphabet of Daeron".
 
-The modeling technique I decided to use was a Deterministic Finite Automaton (DFA) to represent my solutions since they provide a precise and deterministic approach to lexeme parsing, which is suitable for the context of lexical analysis.
+The modeling technique I decided to use was a Deterministic Finite Automaton (DFA) to represent my solutions since they provide a precise and deterministic approach parsing, which is suitable for the context of lexical analysis.
+
 
 ## Model of the Solution
+
+This machine processes the input string from left to right. There is a behaviour defined by using states, the DFA changes state before going to the next symbol to the right until it reaches the ending state, thus forming the string.
 
 I modeled my automaton to cover the 5 words from the elvish language provided
 
@@ -21,6 +24,7 @@ I modeled my automaton to cover the 5 words from the elvish language provided
  
 There are 13 states, initial state being q0 and ending state being q12
 The symbols in between transitions are: 'C', 'A', 'E', 'L', 'R', 'M', 'T', 'N', 'B'
+The initial symbol is always 'C' since all words in my language start with the letter.
 
 This model succesfully covers the 5 words from the elven alfabet.
 
@@ -52,20 +56,22 @@ in the regex_test.py file, i test the following 8 strings:
 
 ## Analysis
 
-The **complexity** of my model is in general n, where n  is the length of the string to be processed. 
-
+The **complexity** of my model is in general O(n), where n  is the length of the string to be processed. 
 I used the regex library from Python to better parse.
-My time complexity = O(n) 
+time complexity = O(n) 
 
-Initially, I attempted to implement the automaton using Prolog. However, as I delved deeper into Prolog, I found it to be quite confusing, which led me to explore alternative approaches.
+Initially, I attempted to implement an NFA automaton using Prolog. However, as I delved deeper, i realized the correct approach to this problem would be a DFA, since struturing words, i could simply use one transition per state, which makes the code cleaner and easier to test and debug. As I tried diving into Prolog, I found it to be quite confusing, which led me to explore alternative approaches.
 
-I decided to follow the recommendation of implementing the automaton in Python. This approach proved to be much more straightforward and intuitive for me. I was able to swiftly translate my automaton into a functional implementation.
+I decided to follow the recommendation of implementing the automaton in Python. This approach proved to be much more straightforward and intuitive for me. I was able to swiftly translate my automaton into a functional implementation with some research.
 
-In Python, I developed a class-based implementation of the automaton. This implementation defines states, input symbols, transitions, and methods to move through the automaton and process input sequences. By structuring the code into a class, I achieved better organization and modularity, facilitating easier maintenance and extension of the solution.
+In Python, I developed a class-based implementation of the automaton. This implementation defines states, input symbols, transitions, and methods to move through the automaton and process input sequences. By structuring the code into a class, I organized and keeped the code simple, facilitating easier maintenance and extension of the solution.
 
 Additionally, I translated the automaton into a regular expression for lexical analysis. This regular expression succesfuly captures the patterns recognized by the automaton, allowing for efficient and concise parsing of input strings
 
 
 ## References
 
-- how to program an automaton python - Google Search. (n.d.). https://www.google.com/search?sca_esv=abb5a476f07ba204&q=how+to+program+an+automaton+python&tbm=vid&source=lnms&prmd=visbnmtz&sa=X&ved=2ahUKEwihvtXSx8WGAxU4I0QIHbCOECcQ0pQJegQIChAB&biw=1443&bih=742&dpr=2#fpstate=ive&vld=cid:841b4817,vid:rsxjCkvYoAw,st:0v
+- 3.1. DFA: Deterministic Finite Acceptor — CS4114 Formal Languages Spring 2021. (n.d.). https://opendsa.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html
+
+(tutorial used to translate my automaton from prolog to python) :
+-  how to program an automaton python - Google Search. (n.d.). https://www.google.com/search?sca_esv=abb5a476f07ba204&q=how+to+program+an+automaton+python&tbm=vid&source=lnms&prmd=visbnmtz&sa=X&ved=2ahUKEwihvtXSx8WGAxU4I0QIHbCOECcQ0pQJegQIChAB&biw=1443&bih=742&dpr=2#fpstate=ive&vld=cid:841b4817,vid:rsxjCkvYoAw,st:0v
