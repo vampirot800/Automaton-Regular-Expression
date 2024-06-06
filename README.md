@@ -19,6 +19,10 @@ I modeled my automaton to cover the 5 words from the elvish language provided
 
 ![NFA1](Automaton.jpeg)
  
+There are 13 states, initial state being q0 and ending state being q12
+The symbols in between transitions are: 'C', 'A', 'E', 'L', 'R', 'M', 'T', 'N', 'B'
+
+This model succesfully covers the 5 words from the elven alfabet.
 
 The presented automaton is equivalent to the following regular expression:
 
