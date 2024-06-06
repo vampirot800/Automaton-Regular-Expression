@@ -2,7 +2,7 @@
 # A01710879
 # 01 / 03 / 2024
 # Implementation of Computational methods Project: Lexical Analysis E1
-# Automaton / Regular Expression
+# Automaton 
 
 class Automaton:
     def __init__(self):

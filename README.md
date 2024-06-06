@@ -1,12 +1,17 @@
 # Automaton-Regular-Expression
 
 ## Description
-The language I chose was elven
+The language I chose to model is Elven.
 
-The words inlcuded in my lexical analysis are the following:
-Calen - Sindarin word for 'green', Calma - Quenya word for 'Lamp', Carca - Quenya word for 'fang' , Celeb- Quenya word for 'silver', Certar - Quenya word for 'Runes', referring in particular to the "Alphabet of Daeron". 
+The words included in my lexical analysis are as follows:
 
-The **modeling technique** I decided to use was a Non-deterministic Finite Automata  (NFA) to represent my solutions since they are easier to model and are often used in the literature to model lexeme parsers as mentioned in (Dom et al 2033). 
+Calen: Sindarin word for 'green'
+Calma: Quenya word for 'Lamp'
+Carca: Quenya word for 'fang'
+Celeb: Quenya word for 'silver'
+Certar: Quenya word for 'Runes', referring in particular to the "Alphabet of Daeron".
+
+The modeling technique I decided to use was a Deterministic Finite Automaton (DFA) to represent my solutions since they provide a precise and deterministic approach to lexeme parsing, which is suitable for the context of lexical analysis.
 
 ## Model of the Solution
 
@@ -17,7 +22,7 @@ I modeled my automaton to cover the 5 words from the elvish language provided
 
 The presented automaton is equivalent to the following regular expression:
 
-NDA 1 -> RE 1:
+DFA 1 -> RE 1:
 {[1,2,3]*}
 
 ## Implementation
@@ -37,7 +42,7 @@ some examples of inputs and outputs are:
 
 ## Tests
 
-The file tests.py contains all the cases tested for regular expressions. 
+The tests can be seen in the end of both files, i used 6 tests in the automaton, 1 for each word parsed succesfully and an extra one to prove the automaton works and no words other than the ones in the language can be generated.
 
 ## Analysis
 
