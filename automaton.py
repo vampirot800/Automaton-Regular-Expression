@@ -76,7 +76,7 @@ print(f"Final state: {final_state}")  # Expected Output: q12
 
 # Test with an invalid input sequence
 try:
-    input_sequence = ['A', 'R', 'X']
+    input_sequence = ['C','E','L','E','N']
     final_state = automaton.process(input_sequence)
     print(f"Final state: {final_state}")
 except ValueError as e:
