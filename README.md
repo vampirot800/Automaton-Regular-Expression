@@ -17,7 +17,7 @@ The modeling technique I decided to use was a Deterministic Finite Automaton (DF
 
 I modeled my automaton to cover the 5 words from the elvish language provided
 
-![NFA1](Automaton.jpeg)
+![DFA](Automaton.jpeg)
  
 There are 13 states, initial state being q0 and ending state being q12
 The symbols in between transitions are: 'C', 'A', 'E', 'L', 'R', 'M', 'T', 'N', 'B'
@@ -26,46 +26,46 @@ This model succesfully covers the 5 words from the elven alfabet.
 
 The presented automaton is equivalent to the following regular expression:
 
-DFA 1 -> RE 1:
-{[1,2,3]*}
+DFA -> RE:
+C(ALEN|ALMA|ARCA|ELEB|ERTAR)
 
 ## Implementation
 
-For my implementation of a lexical analysis, I followed the regular expressions as can be seen in the regex.py file.
-To use the file you need to put the input in the format of a string “1222344”  and the program should return yes if the string is accepted or no if the string is not part of the language.
+For my implementation of a lexical analysis, I followed the regular expression in the regex_test.py file.
+The file tests 8 strings and the program should return "''Matches the pattern" if the string is accepted or "''does not match the pattern" if the string is not part of the language.
 
-some examples of inputs and outputs are: 
- 
-  1123125  -> no
-
-  112312  -> yes
-
-  11  -> yes
-
-  1222123125  -> no
+the strings tested can be modified to prove that no other string would be accepted other than the 5 words.
 
 ## Tests
 
 The tests can be seen in the end of both files, i used 6 tests in the automaton, 1 for each word parsed succesfully and an extra one to prove the automaton works and no words other than the ones in the language can be generated.
 
+in the regex_test.py file, i test the following 8 strings:
+    'CALEN',  # Should match
+    'CALMA',  # Should match
+    'CARCA',  # Should match
+    'CELEB',  # Should match
+    'CERTAR', # Should match
+    'CALEB',  # Should not match (incomplete)
+    'CERTAB', # Should not match (invalid)
+    'CAL',    # Should not match (invalid)
+
 ## Analysis
 
-The **complexity** of my model is in general n, where n  is the length of the string to be processed. Here is my proof by induction or hand analysis time complexity:
+The **complexity** of my model is in general n, where n  is the length of the string to be processed. 
 
+I used the regex library from Python to better parse.
+My time complexity = O(n) 
 
-     for i < n
-       if i in n
-        i ++
-       end
-….  
+Initially, I attempted to implement the automaton using Prolog. However, as I delved deeper into Prolog, I found it to be quite confusing, which led me to explore alternative approaches.
 
+I decided to follow the recommendation of implementing the automaton in Python. This approach proved to be much more straightforward and intuitive for me. I was able to swiftly translate my automaton into a functional implementation.
 
-I used the regex library from Python which internally according to the API documentation uses the algorithms from Unix to better parse... etc ... this means that my time complexity in general remains as O(n) 
+In Python, I developed a class-based implementation of the automaton. This implementation defines states, input symbols, transitions, and methods to move through the automaton and process input sequences. By structuring the code into a class, I achieved better organization and modularity, facilitating easier maintenance and extension of the solution.
 
-My first approach to the **solution** was to use an automaton in prolog which is also a natural solution however following the recommendations I found in  (sun et al, 2054)  I preferred the Regular Expression because it is faster in the context of ... etc ... havinf an overall time of  O(log n)
+Additionally, I translated the automaton into a regular expression for lexical analysis. This regular expression succesfuly captures the patterns recognized by the automaton, allowing for efficient and concise parsing of input strings
 
 
 ## References
 
-- Dom, Dim, and Dum (2033) "The magic of showing projects in GitHub so the student will feel less anxious about what they have to hand in as evidence", BENs Happy Books, 3rd edition, page 42.
-- Sun, Son, Sen, San, and Pepe (2054), "Git Gud at computer theory" available at www.gitgud.com/computers-tutorials_NFA_DFA_RE.
+- how to program an automaton python - Google Search. (n.d.). https://www.google.com/search?sca_esv=abb5a476f07ba204&q=how+to+program+an+automaton+python&tbm=vid&source=lnms&prmd=visbnmtz&sa=X&ved=2ahUKEwihvtXSx8WGAxU4I0QIHbCOECcQ0pQJegQIChAB&biw=1443&bih=742&dpr=2#fpstate=ive&vld=cid:841b4817,vid:rsxjCkvYoAw,st:0v
