@@ -8,10 +8,11 @@ class Automaton:
     def __init__(self):
 
         # Definition of states and transitions
-        self.states = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12'}
+        self.states = {'p0', 'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12'}
         self.input_symbols = {'C', 'A', 'E', 'L', 'R', 'M', 'T', 'N', 'B'}
         self.transitions = {
-            'q0': {'C': 'q0', 'A': 'q1', 'E': 'q6'},
+            'p0': {'C': 'q0'}, 
+            'q0': {'A': 'q1', 'E': 'q6'},
             'q1': {'L': 'q2', 'R': 'q5'},
             'q2': {'E': 'q3', 'M': 'q4'},
             'q3': {'N': 'q12'}, 
@@ -26,10 +27,10 @@ class Automaton:
             'q12': {}, 
         }
         
-        self.start_state = 'q0'
-        self.current_state = 'q0'  # Initial state 'q0'
+        self.start_state = 'p0'
+        self.current_state = 'p0'  # Initial state
         self.final_state = 'q12'
-        self.initial_symbol = 'C'  # Initial symbol to start the automaton
+
 
     # Functions 
     # Find the next state based on the current state and input symbol
@@ -44,7 +45,6 @@ class Automaton:
 
     def process(self, input_sequence):
         self.current_state = self.start_state 
-        self.move(self.initial_symbol) 
 
         for symbol in input_sequence:
             self.move(symbol)
@@ -53,35 +53,16 @@ class Automaton:
 # Automaton Instance
 automaton = Automaton()
 
-# Test Cases
-# Language Elven Words sentences
-# Expected Outputs: q12 (ending state)
+# Words to test
+words = ['CALEN', 'CALMA', 'CARCA', 'CELEB', 'CERTAR']
 
-input_sequence = ['C','A', 'L', 'E', 'N']
-final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  
-
-input_sequence = ['C','A', 'L', 'M', 'A']
-final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}") 
-
-input_sequence = ['C','A', 'R', 'C', 'A']
-final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}") 
-
-input_sequence = ['C','E', 'L', 'E', 'B']
-final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}") 
-
-input_sequence = ['C','E', 'R', 'T', 'A', 'R']
-final_state = automaton.process(input_sequence)
-print(f"Final state: {final_state}")  
-
-# Invalid Sentence Test
-# Should raise an error
-try:
-    input_sequence = ['C','E','L','E','N']
-    final_state = automaton.process(input_sequence)
-    print(f"Final state: {final_state}")
-except ValueError as e:
-    print(e)  
+# Test each word
+for word in words:
+    try:
+        final_state = automaton.process(word)
+        if final_state == automaton.final_state:
+            print(f"The word '{word}' is accepted by the automaton.")
+        else:
+            print(f"The word '{word}' is not accepted by the automaton.")
+    except ValueError as e:
+        print(e)
